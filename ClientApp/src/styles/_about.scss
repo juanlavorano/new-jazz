@@ -1,0 +1,26 @@
+.about {
+  height: 100vh;
+  background-color: $white;
+  padding-top: 50px;
+  color: $very-dark-blue;
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 100px;
+  }
+
+  &__card {
+    width: 300px;
+    margin: 40px;
+
+    &__title {
+    }
+
+    &__text {
+      line-height: 1.4;
+      color: $dark-gray;
+    }
+  }
+}

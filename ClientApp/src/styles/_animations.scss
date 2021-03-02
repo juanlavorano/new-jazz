@@ -1,0 +1,33 @@
+// .dropdown_menu-7
+//     animation: rotateMenu 400ms ease-in-out forwards
+//     transform-origin: top center
+
+@keyframes fadeIn {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  70% {
+    transform: rotateX(20deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+.fade-in {
+  animation: fadeIn 400ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: rotateX(0deg);
+  }
+
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+.fade-out {
+  animation: fadeOut 400ms ease-in-out forwards;
+  transform-origin: top center;
+}

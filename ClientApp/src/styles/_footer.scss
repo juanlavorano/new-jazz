@@ -1,0 +1,57 @@
+.footer {
+  background-color: $black;
+  color: $white;
+  justify-items: start;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 3fr 2fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "logo social links copyright";
+  gap: 1rem;
+
+  &__logo {
+    grid-area: logo;
+  }
+
+  &__links {
+    grid-area: links;
+    display: flex;
+    justify-content: center;
+
+    &__link {
+      margin-right: 20px;
+      font-size: $font-sm;
+      transition: color 150ms ease-in-out;
+
+      &:hover {
+        color: #cccccc;
+      }
+    }
+  }
+
+  &__social {
+    grid-area: social;
+
+    &__item {
+      cursor: pointer;
+      transition: all 150ms ease-in-out;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+
+    &__item {
+      margin-right: 10px;
+    }
+  }
+
+  &__copyright {
+    grid-area: copyright;
+    font-size: $font-xs;
+    color: $light-gray;
+  }
+}

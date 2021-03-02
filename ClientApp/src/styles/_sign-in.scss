@@ -1,0 +1,38 @@
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__title {
+    color: $very-dark-blue;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &__input {
+      &:not(:last-of-type) {
+        margin-bottom: 20px;
+      }
+      padding: 0.625rem;
+      width: 18.75rem;
+      border: 1px solid $dark-gray;
+      border-radius: 3px;
+      outline: none;
+      color: $dark-gray;
+      font-size: $font-sm;
+    }
+
+    &__button {
+      max-width: 100%;
+      background-color: $gray;
+
+      &:hover {
+        box-shadow: inset 0 0 0 50px $dark-gray;
+      }
+    }
+  }
+}
