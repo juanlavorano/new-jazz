@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   background-color: $very-dark-blue;
-  height: 100vh;
+  height: 93vh;
   color: $white;
   position: relative;
+  z-index: 2000;
 
   &__background {
     background-image: url("../assets/Pattern.svg");
@@ -27,11 +28,25 @@
     flex: 1;
 
     &__left {
-      img {
-        max-height: 28.125rem;
-        width: auto;
-        border-radius: 5px;
-        box-shadow: 1px 1px 10px 10px rgba(19, 19, 19, 0.3);
+      &__img {
+        position: relative;
+
+        img {
+          max-height: 28.125rem;
+          height: 100%;
+          border-radius: 5px;
+          box-shadow: 1px 1px 10px 10px rgba(19, 19, 19, 0.3);
+        }
+
+        .image-heart {
+          position: absolute;
+          right: 0;
+          margin: 10px;
+          border: solid 1.5px white;
+          border-radius: 50%;
+          padding: 5px;
+          cursor: pointer;
+        }
       }
 
       &__buttons {

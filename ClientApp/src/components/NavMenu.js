@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux'
 import { setMainAlbum } from './actions/album'
@@ -9,10 +9,11 @@ import logo from '../assets/NJ.svg'
 
 export function NavMenu() {
   const [search, setSearch] = useState('')
-  const [active, setActive] = useState(false)  
+  const [active, setActive] = useState()  
   const token = useSelector(state => state.user.spotifyToken) 
-  const user = useSelector(state => state.user.currentUser)
+  const {currentUser} = useSelector(state => state.user)
   const dispatch = useDispatch();
+  const history = useHistory();
   
   const handleSearch = (e) => {
     e.preventDefault()
@@ -29,8 +30,17 @@ export function NavMenu() {
   }
 
   const handleLogout = () => {
-    setActive(!active)
+    setActive('off')
     dispatch(logUserOut())
+  }
+
+  const handleProfile = () => {
+    setActive('off')
+    history.push(`/${currentUser.username}`)
+  }
+
+  const handleActive = () => {
+    setActive(active == 'on' ? 'off' : active == 'off' || active == null ?'on' : null)
   }
   
     return (
@@ -45,7 +55,7 @@ export function NavMenu() {
           <FaSearch  className='navbar__search__icon' size={20}/>
           </div>
         </form>
-        {!user
+        {!currentUser
           ?
           <div className='navbar__signs'>
             <Link to='/signin' className='button navbar__signs__button'>Sign In</Link>
@@ -53,9 +63,9 @@ export function NavMenu() {
           </div>
           :
           <div className='navbar__user'>
-            <p>Hi <a onClick={() => setActive(!active)}>{user.username}</a></p>
-            <div className={active ? 'navbar__user__user-menu fade-in' : 'navbar__user__user-menu fade-out' }>
-              <a className='navbar__user__user-menu__item'>Profile</a>
+            <p>Hi <a onClick={() => handleActive()}>{currentUser.username}</a></p>
+            <div className={active == 'on' ? 'navbar__user__user-menu fade-in' : active == 'off' ? 'navbar__user__user-menu fade-out' : 'inactive' }>
+              <a className='navbar__user__user-menu__item' onClick={() => handleProfile()}>Profile</a>
               <a className='navbar__user__user-menu__item'>Profile</a>
               <a className='navbar__user__user-menu__item' onClick={() => handleLogout()}>Logout</a>
             </div>

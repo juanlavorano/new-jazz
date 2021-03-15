@@ -38,7 +38,31 @@ namespace New_Jazz
                 ));
 
             // MySql
+            // Users
             services.AddDbContextPool<UsersContext>(
+                dbContextOptions => dbContextOptions
+                    .UseMySql(
+                        Configuration.GetConnectionString("DefaultConnection"),
+                        new MySqlServerVersion(new Version(8, 0, 21)),
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
+            // Albums
+            services.AddDbContextPool<AlbumsContext>(
+                dbContextOptions => dbContextOptions
+                    .UseMySql(
+                        Configuration.GetConnectionString("DefaultConnection"),
+                        new MySqlServerVersion(new Version(8, 0, 21)),
+                        mySqlOptions => mySqlOptions
+                            .CharSetBehavior(CharSetBehavior.NeverAppend))
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors()
+            );
+
+            // FavAlbums
+            services.AddDbContextPool<FavAlbumsContext>(
                 dbContextOptions => dbContextOptions
                     .UseMySql(
                         Configuration.GetConnectionString("DefaultConnection"),

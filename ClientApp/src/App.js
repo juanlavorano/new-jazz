@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { SignIn } from './components/SignIn';
 import { SignUp } from './components/SignUp';
+import { UserProfile } from './components/UserProfile/UserProfile';
 import { AlbumInfo } from './components/AlbumInfo';
 import { useDispatch, useSelector } from 'react-redux'
 import { requestToken } from './components/actions/user'
@@ -55,9 +56,10 @@ export default function App() {
         :
           <Layout>
             <Route exact path='/' component={Home} />
-            <Route path='/signup' component={SignUp} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/album-info/{id}' component={AlbumInfo}/>
+            <Route exact path='/signup' component={SignUp} />
+            <Route exact path='/signin' component={SignIn} />
+            <Route exact path='/:username' component={UserProfile} />
+            <Route exact path='/album-info/:id' component={AlbumInfo}/>
           </Layout >
       }
     </div>

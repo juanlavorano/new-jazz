@@ -5,10 +5,8 @@
   background-color: $very-dark-blue;
   color: $white;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
   max-height: $nav-height;
-  z-index: 1000;
+  z-index: 3000;
 
   &__logo {
     cursor: pointer;
@@ -62,6 +60,7 @@
       padding: 10px 60px 10px 10px;
       background-color: $dark-moderate-blue;
       border-radius: 5px;
+      z-index: 3001;
 
       &__item {
         &:not(:last-of-type) {

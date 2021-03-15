@@ -27,7 +27,7 @@ export function SignIn() {
             .then(res => {
                 if (res.status == 200) {
                     dispatch(logUserIn(res.data.user))
-                    history.push('/')
+                    history.goBack()
                 } else {
                     setError(res.data)
                 }

@@ -1,25 +1,42 @@
 using System;
 using System.Text;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace New_Jazz.Services
 {
     public static class Encryption
     {
-        public static string key = "encryptionkey";
-
-        public static string Encrypt(string password)
+        public static (string hashed, string salt) Encrypt(string password)
         {
-            password += key;
-            byte[] encPassword = Encoding.UTF8.GetBytes(password);
-            return Convert.ToBase64String(encPassword);
+            byte[] salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 256 / 8));
+
+            return (hashed, Convert.ToBase64String(salt));
         }
 
-        public static string Decrypt(string password)
+        public static string Decrypt(string password, string savedSalt)
         {
-            var strPassword = Convert.FromBase64String(password);
-            string decodedString = Encoding.UTF8.GetString(strPassword);
-            var result = decodedString.Substring(0, decodedString.Length - key.Length);
-            return result;
+            byte[] salt = Convert.FromBase64String(savedSalt);
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+               password: password,
+               salt: salt,
+               prf: KeyDerivationPrf.HMACSHA1,
+               iterationCount: 10000,
+               numBytesRequested: 256 / 8));
+
+            return hashed;
         }
     }
 }

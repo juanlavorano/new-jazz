@@ -1,7 +1,47 @@
 .album-info {
-  height: 100vh;
+  height: 100%;
+  min-height: 85.6vh;
+  background-color: $very-dark-blue;
+  color: $white;
 
   &__div {
-    height: 200px;
+    display: flex;
+
+    &__img {
+      flex: 1;
+
+      &__img {
+        max-height: 400px;
+        max-width: 400px;
+        border-radius: 5px;
+      }
+    }
+
+    &__info {
+      flex: 2;
+      margin-left: 20px;
+
+      &__tracks {
+        list-style: none;
+        padding-inline-start: 0;
+
+        & li {
+          padding: 10px 20px;
+          margin: 0;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: background-color 150ms ease-in-out;
+
+          &:hover {
+            background-color: $dark-moderate-blue;
+          }
+        }
+
+        &__track {
+          text-decoration: none;
+          color: $light-gray;
+        }
+      }
+    }
   }
 }

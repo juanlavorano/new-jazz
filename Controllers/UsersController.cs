@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using AutoMapper;
 using New_Jazz.Data;
 using New_Jazz.Models;
@@ -35,10 +33,11 @@ namespace New_Jazz.Controllers
             // New User Object
             User user = new User()
             {
-                ID = newUser.ID,
+                user_id = newUser.user_id,
                 username = newUser.username,
                 email = newUser.email,
-                password = encryptedPassword
+                password = encryptedPassword.hashed,
+                salt = encryptedPassword.salt
             };
 
             var existingUser = _authentication.LookForExistingUser(newUser.username, newUser.email);
@@ -72,7 +71,8 @@ namespace New_Jazz.Controllers
                 user = new
                 {
                     username = existingUser.username,
-                    email = existingUser.email
+                    email = existingUser.email,
+                    user_id = existingUser.user_id
                 },
                 message = "Successfully logged in"
             });

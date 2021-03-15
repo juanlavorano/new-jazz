@@ -8,8 +8,8 @@ using New_Jazz.Data;
 namespace New_Jazz.Migrations
 {
     [DbContext(typeof(UsersContext))]
-    [Migration("20210227102237_model-update")]
-    partial class modelupdate
+    [Migration("20210312145528_first-migration")]
+    partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,12 +20,18 @@ namespace New_Jazz.Migrations
 
             modelBuilder.Entity("New_Jazz.Models.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("user_id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("email")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("firstName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("lastName")
                         .HasColumnType("longtext");
 
                     b.Property<string>("password")
@@ -36,7 +42,7 @@ namespace New_Jazz.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("ID");
+                    b.HasKey("user_id");
 
                     b.ToTable("Users");
                 });

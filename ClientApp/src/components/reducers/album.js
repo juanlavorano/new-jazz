@@ -4,8 +4,7 @@ export const setMainAlbum = (state='', action) => {
             return {
                 ...state,
                 mainAlbum: action.payload.album
-            }    
-            break;
+            }
         default: return state
     }
 }

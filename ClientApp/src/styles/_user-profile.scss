@@ -1,0 +1,16 @@
+.user-profile {
+  color: $white;
+  height: 100vh;
+  background-color: $very-dark-blue;
+
+  &__sections {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+  }
+
+  .menu-item_active {
+    background-color: $dark-moderate-blue;
+  }
+}

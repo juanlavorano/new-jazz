@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using New_Jazz.Data;
 using New_Jazz.Models;
@@ -33,14 +30,14 @@ namespace New_Jazz.Services
                 .Where(u => u.username == username)
                 .SingleOrDefault();
 
-            var decodedPassword = Encryption.Decrypt(existingUser.password);
+            var decodedPassword = Encryption.Decrypt(password, existingUser.salt);
 
             // check if username exists
             if (existingUser == null)
                 return null;
 
             // check if password is correct
-            if (decodedPassword != password)
+            if (decodedPassword != existingUser.password)
                 return null;
 
             // authentication successful
