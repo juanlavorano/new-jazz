@@ -29,27 +29,28 @@ export function Home() {
     })
       .then(res => dispatch(setMainAlbum(res.data.albums.items[0])))
     
-    const favAlbum = {
-      spotify_id: album.payload.album.id,
-      user_id: currentUser.user_id
-    }
-    
-    const fav = await api({
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'GET',
-      url: `/favalbums/get-fav`,
-      params: favAlbum
-    })
-      .then(res => {
-        if (res.status == 200)
-        {
-          setFav(true)  
-        } else {
-          setFav(false)
-        }
+    if (currentUser) {
+      const favAlbum = {
+        spotify_id: album.payload.album.id,
+        user_id: currentUser.user_id
+      }
+
+      const fav = await api({
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'GET',
+        url: `/favalbums/get-fav`,
+        params: favAlbum
       })
+        .then(res => {
+          if (res.status == 200) {
+            setFav(true)
+          } else {
+            setFav(false)
+          }
+        })
+    }
   }
 
   const handleClick =  (e) => {

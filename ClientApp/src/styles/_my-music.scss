@@ -1,0 +1,28 @@
+.my-music {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 10px;
+  background-color: $very-dark-blue;
+
+  &__album {
+    margin: 10px 0px;
+    display: flex;
+
+    &__img {
+      min-height: 250px;
+      width: 25%;
+      border-radius: 5px;
+    }
+
+    &__info {
+      margin-left: 20px;
+
+      &__button {
+        text-align: center;
+        background-color: $dark-gray;
+        width: 150px;
+      }
+    }
+  }
+}

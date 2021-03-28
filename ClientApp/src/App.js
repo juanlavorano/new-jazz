@@ -9,6 +9,7 @@ import { AlbumInfo } from './components/AlbumInfo';
 import { useDispatch, useSelector } from 'react-redux'
 import { requestToken } from './components/actions/user'
 import { Credentials } from './components/Credentials'
+import {PrivateRoute} from './components/PrivateRoute'
 import { setMainAlbum } from './components/actions/album'
 import {albumDb} from './assets/albumsdb'
 
@@ -58,7 +59,7 @@ export default function App() {
             <Route exact path='/' component={Home} />
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/signin' component={SignIn} />
-            <Route exact path='/:username' component={UserProfile} />
+            <PrivateRoute exact path='/:username' component={UserProfile} />
             <Route exact path='/album-info/:id' component={AlbumInfo}/>
           </Layout >
       }

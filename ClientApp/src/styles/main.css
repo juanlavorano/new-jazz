@@ -480,7 +480,7 @@ h2 {
 
 .user-profile {
   color: #ffffff;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #003663;
 }
 
@@ -497,6 +497,42 @@ h2 {
 
 .user-profile .menu-item_active {
   background-color: #384e7a;
+}
+
+.my-music {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-height: 100%;
+  padding: 10px;
+  background-color: #003663;
+}
+
+.my-music__album {
+  margin: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.my-music__album__img {
+  min-height: 250px;
+  width: 25%;
+  border-radius: 5px;
+}
+
+.my-music__album__info {
+  margin-left: 20px;
+}
+
+.my-music__album__info__button {
+  text-align: center;
+  background-color: #5a5a5a;
+  width: 150px;
 }
 
 .album-info {
